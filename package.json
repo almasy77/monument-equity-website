@@ -1,0 +1,10 @@
+{
+  "name": "monument-equity",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monument Equity Partners — static site with serverless form handling.",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}

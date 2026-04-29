@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Monument Equity Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #FFFFFF;
+    --paper-warm:   #F5F4EE;
+    --paper-card:   #FAF9F4;
+    --ink:          #0F0F0F;
+    --ink-soft:     #5A5A55;
+    --green:        #1F3B2E;
+    --green-deep:   #142719;
+    --orange:       #D87333;
+    --rule:         #DCD9D0;
+    --rule-dark:    rgba(255,255,255,0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-weight: 400;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .serif {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+  }
+  .mono { font-family: 'DM Mono', 'Menlo', monospace; }
+  a { color: var(--ink); text-decoration: none; transition: color 0.18s; }
+  a:hover { color: var(--orange); }
+
+  /* Header */
+  header {
+    position: sticky; top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 10;
+  }
+  .nav { max-width: 1200px; margin: 0 auto; padding: 18px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .brand { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: 0.01em; }
+  .brand a { color: var(--ink); }
+  .nav-links { display: flex; gap: 30px; align-items: center; font-size: 14px; }
+  .nav-links a { color: var(--ink-soft); }
+
+  /* Hero */
+  .hero { max-width: 1200px; margin: 0 auto; padding: 110px 32px 90px; }
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 28px;
+  }
+  .hero h1 { font-size: clamp(40px, 5.6vw, 68px); max-width: 940px; margin-bottom: 28px; }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero-lede { font-size: 18px; max-width: 640px; color: var(--ink-soft); line-height: 1.7; }
+  .accent-line { width: 56px; height: 2px; background: var(--orange); margin: 18px 0 22px; }
+
+  /* Section base */
+  section { padding: 90px 32px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+    align-items: end;
+  }
+  .section-header h2 { font-size: clamp(32px, 4vw, 46px); }
+  .section-header p { color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+
+  /* Principal */
+  .principal-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .profile {
+    width: 280px; height: 280px;
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .profile::after {
+    content: 'BF';
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px; color: var(--green); opacity: 0.32;
+  }
+  .profile img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 22%;
+    position: absolute; top: 0; left: 0;
+  }
+  .principal-name { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--ink); margin-bottom: 4px; }
+  .principal-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 26px;
+  }
+  .principal-body p {
+    font-size: 17px; color: var(--ink-soft);
+    margin-bottom: 18px; line-height: 1.75;
+  }
+  .principal-body p:first-of-type { color: var(--ink); }
+  .lantern-aside {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: var(--paper-card);
+    border-left: 3px solid var(--orange);
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .lantern-aside .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .linkedin-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green) !important;
+    border-bottom: 1px solid var(--green);
+    padding-bottom: 4px;
+  }
+  .linkedin-link:hover { color: var(--orange) !important; border-bottom-color: var(--orange); }
+  .linkedin-link svg { width: 14px; height: 14px; }
+
+  /* Atlanta panel */
+  .atlanta-bg { background: var(--green); color: var(--paper); }
+  .atlanta-bg .section-header { border-bottom-color: var(--rule-dark); }
+  .atlanta-bg .section-header p { color: rgba(255,255,255,0.72); }
+  .atlanta-bg .eyebrow { color: var(--orange); }
+  .atlanta-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .atlanta-prose p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+  .atlanta-prose p:first-child { color: var(--paper); }
+  .atlanta-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border-bottom: 1px solid var(--orange);
+    padding-bottom: 4px;
+  }
+  .atlanta-cta:hover { color: var(--paper) !important; border-bottom-color: var(--paper); }
+  .atlanta-stats {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--rule-dark);
+    padding: 28px 30px;
+  }
+  .stat {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-dark);
+  }
+  .stat:last-child { border-bottom: none; }
+  .stat .key {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 4px;
+  }
+  .stat .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 21px;
+    color: var(--paper);
+  }
+
+  /* Field Notes preview */
+  .notes-bg { background: var(--paper-warm); }
+  .notes-list-preview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .note-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 32px 30px;
+    position: relative;
+    transition: border-color 0.18s, transform 0.18s;
+  }
+  .note-card::before { content: ''; position: absolute; top: 0; left: 0; width: 36px; height: 2px; background: var(--orange); }
+  .note-card:hover { border-color: var(--green); transform: translateY(-2px); }
+  .note-card a { color: var(--ink); display: block; }
+  .note-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+    margin-top: 6px;
+  }
+  .note-card h3 {
+    font-size: 24px;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  .note-card p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .note-card .read {
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .all-notes-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    border-bottom: 1px solid var(--green);
+    padding-bottom: 4px;
+  }
+  .all-notes-link:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+  /* Contact */
+  .contact-bg { background: var(--paper); }
+  .contact-header { margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+  .contact-header .eyebrow { color: var(--orange); }
+  .contact-header h2 { font-size: clamp(32px, 4vw, 44px); margin-bottom: 8px; }
+  .contact-header p { color: var(--ink-soft); font-size: 16px; max-width: 560px; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .inquiry-card {
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    padding: 40px;
+    position: relative;
+  }
+  .inquiry-card::before { content: ''; position: absolute; top: 0; left: 0; width: 56px; height: 2px; background: var(--orange); }
+  .inquiry-card h3 { font-size: 24px; margin-bottom: 24px; color: var(--green); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .field { margin-bottom: 16px; }
+  .field-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field-label .req { color: var(--orange); }
+  .field input, .field select, .field textarea, .form-row input, .form-row select {
+    width: 100%; padding: 11px 13px;
+    border: 1px solid var(--rule); background: var(--paper);
+    font-family: 'DM Sans', sans-serif; font-size: 14.5px;
+    color: var(--ink); outline: none; transition: border-color 0.18s;
+  }
+  .field textarea { resize: vertical; min-height: 110px; }
+  .field input:focus, .field select:focus, .field textarea:focus, .form-row input:focus, .form-row select:focus { border-color: var(--green); }
+  .submit-btn {
+    width: 100%; padding: 14px;
+    background: var(--green); color: var(--paper); border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.18s; margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--orange); }
+  .form-privacy { text-align: center; color: var(--ink-soft); font-size: 11px; margin-top: 14px; line-height: 1.6; }
+  .route-helper {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    background: var(--paper);
+    border-left: 3px solid var(--orange);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    display: none;
+  }
+  .route-helper.show { display: block; }
+  .route-helper a { color: var(--green); border-bottom: 1px solid var(--green); }
+  .route-helper a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+  .contact-side h3 { font-size: 22px; color: var(--green); margin-bottom: 8px; }
+  .contact-side > p { color: var(--ink-soft); font-size: 15px; margin-bottom: 24px; }
+  .contact-direct { background: var(--paper-card); border: 1px solid var(--rule); padding: 28px; margin-bottom: 22px; }
+  .contact-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 15px; }
+  .contact-row svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--orange); }
+  .contact-row a { color: var(--ink); }
+  .contact-row a:hover { color: var(--orange); }
+  .quick-links {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    padding: 24px 26px;
+  }
+  .quick-links .lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+  .quick-links a {
+    display: block;
+    padding: 7px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--green);
+    border-bottom: 1px solid var(--rule);
+  }
+  .quick-links a:last-child { border-bottom: none; }
+  .quick-links a:hover { color: var(--orange); }
+  .quick-links .arr { color: var(--orange); margin-right: 6px; }
+
+  /* Footer */
+  footer { background: var(--green-deep); color: rgba(255,255,255,0.6); padding: 56px 32px 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; padding-bottom: 36px; border-bottom: 1px solid var(--rule-dark); margin-bottom: 28px; }
+  .footer-brand { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--paper); margin-bottom: 10px; }
+  .footer-tag { font-size: 13px; line-height: 1.6; max-width: 460px; }
+  .footer-links { text-align: right; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; }
+  .footer-links a { color: rgba(255,255,255,0.7); display: block; padding: 4px 0; }
+  .footer-links a:hover { color: var(--orange); }
+  .disclaimer { font-size: 11px; line-height: 1.7; color: rgba(255,255,255,0.45); max-width: 980px; margin-bottom: 24px; }
+  .disclaimer strong { color: rgba(255,255,255,0.72); font-weight: 500; }
+  .footer-bottom { display: flex; justify-content: space-between; font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); padding-top: 20px; border-top: 1px solid var(--rule-dark); }
+
+  /* Responsive */
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .section-header { grid-template-columns: 1fr; gap: 16px; }
+    .principal-grid { grid-template-columns: 1fr; gap: 32px; }
+    .profile { width: 200px; height: 200px; }
+    .atlanta-grid { grid-template-columns: 1fr; }
+    .notes-list-preview { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-links { text-align: left; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+    .hero { padding: 70px 24px 60px; }
+    section { padding: 60px 24px; }
+    .inquiry-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><a href="index.html">Monument Equity Partners</a></div>
+    <nav class="nav-links">
+      <a href="acquisitions.html">Acquisitions</a>
+      <a href="owners.html">Owners</a>
+      <a href="notes.html">Notes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>An <em>owner-operator</em> approach to Southeast real estate.</h1>
+  <div class="accent-line"></div>
+  <p class="hero-lede">Monument Equity Partners is a private real estate company acquiring small-to-mid value-add multifamily in metro Atlanta, with concept-stage work in development and 55+ residential.</p>
+</section>
+
+<section id="principal">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">— Principal</div>
+      <div>
+        <h2>Operator background.</h2>
+      </div>
+    </div>
+    <div class="principal-grid">
+      <div class="profile">
+        <img src="assets/bryan.jpg" alt="Bryan Frank" onerror="this.style.display='none'" />
+      </div>
+      <div class="principal-body">
+        <div class="principal-name">Bryan Frank</div>
+        <div class="principal-title">Principal</div>
+        <p>Bryan founded Monument Equity in 2026 after exiting Posto, a property management company he built and sold in the Northeast.</p>
+        <p>Monument Equity is an owner-operator, with a long-term view of building value.</p>
+        <p>Additional relevant experience: Trust Guild, a private family office specializing in care-coordination for aging family members.</p>
+        <div class="lantern-aside">
+          <div class="label">— Project Lantern</div>
+          Bryan is also developing Project Lantern, a concept-stage 55+ design-forward residential community focused on wellness, longevity, and lifelong enrichment.
+        </div>
+        <a href="https://linkedin.com/in/bryanjfrank" target="_blank" rel="noopener noreferrer" class="linkedin-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 0H5C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM7.7 19H4.7V9h3v10zM6.2 7.7c-1 0-1.7-.7-1.7-1.6s.7-1.6 1.8-1.6c1 0 1.7.7 1.7 1.6s-.7 1.6-1.8 1.6zM20 19h-3v-5.4c0-1.5-.6-2-1.5-2-.9 0-1.8.7-1.8 2.1V19h-3V9h2.9v1.4c.3-.6 1.3-1.6 2.8-1.6 1.7 0 3.5 1 3.5 3.9V19z"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="atlanta" class="atlanta-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">— Primary Market</div>
+      <div>
+        <h2>Atlanta.</h2>
+        <p>Metro Atlanta is Monument Equity's first primary acquisition market. The active sleeve is sourcing today; full buy box and submarket detail on the Acquisitions page.</p>
+      </div>
+    </div>
+    <div class="atlanta-grid">
+      <div class="atlanta-prose">
+        <p>Atlanta has the depth and the off-market volume that Southeast peer metros don't, with the same demographic tailwind underneath. We're focused on small-to-mid value-add multifamily — 8 to 24 units per building, B-/C+ vintage, in-place cap rates of 5.5–7.0% — with priority submarkets in College Park, East Point, and Hapeville, and selective work in West End, Adair Park, South Atlanta, and Lakewood.</p>
+        <p>Bryan is on the ground in Atlanta 10–15 multi-day trips per year. The 2026–2027 deployment goal is 2–3 closings and $1.5–3M of capital.</p>
+        <a href="acquisitions.html" class="atlanta-cta">View the buy box →</a>
+      </div>
+      <div class="atlanta-stats">
+        <div class="stat"><div class="key">Active sleeve</div><div class="val">Value-add multifamily</div></div>
+        <div class="stat"><div class="key">Target deal size</div><div class="val">8–24 units / $1.0–1.5M</div></div>
+        <div class="stat"><div class="key">2026–27 goal</div><div class="val">2–3 closings</div></div>
+        <div class="stat"><div class="key">Hold horizon</div><div class="val">Long-term</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="notes" class="notes-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">— Field Notes</div>
+      <div>
+        <h2>Notes from the field.</h2>
+        <p>Short pieces a few times a year on what we're seeing in the market and how we think about the operator-first lens.</p>
+      </div>
+    </div>
+    <div class="notes-list-preview">
+      <a href="notes.html#why-atlanta" style="text-decoration:none;">
+        <div class="note-card">
+          <div class="note-meta">— March 2026 · Markets</div>
+          <h3>Why Atlanta.</h3>
+          <p>The obvious primary metro was Raleigh-Durham. Six months of running the buy-box numbers told me to look elsewhere — and what Atlanta has that the Triangle doesn't.</p>
+          <div class="read">Read →</div>
+        </div>
+      </a>
+      <a href="notes.html#operators-question" style="text-decoration:none;">
+        <div class="note-card">
+          <div class="note-meta">— April 2026 · Underwriting</div>
+          <h3>The operator's first question.</h3>
+          <p>An underwriter asks what the in-place NOI is. An operator asks who's actually here on day 60. Most institutional capital asks the underwriter questions first. Monument doesn't.</p>
+          <div class="read">Read →</div>
+        </div>
+      </a>
+    </div>
+    <a href="notes.html" class="all-notes-link">All notes →</a>
+  </div>
+</section>
+
+<section id="contact" class="contact-bg">
+  <div class="container">
+    <div class="contact-header">
+      <div class="eyebrow">— Get in Touch</div>
+      <h2>Tell us about your situation.</h2>
+      <p>Pick the option that best describes you and we'll route accordingly. Brokers and owners can also go directly to the dedicated pages linked at right.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Left: Inquiry Form -->
+      <div class="inquiry-card" id="inquiry-form-card">
+        <h3>Inquiry</h3>
+        <form id="inquiry-form" novalidate>
+          <input type="hidden" name="formType" value="inquiry" />
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+          <div class="field">
+            <label class="field-label" for="role">Who are you? <span class="req">*</span></label>
+            <select id="role" name="role" required onchange="updateRouteHelper(this.value)">
+              <option value="">Select one</option>
+              <option value="broker">Multifamily broker (with a deal)</option>
+              <option value="owner">Property owner (considering a sale)</option>
+              <option value="dev">Development partner / collaborator</option>
+              <option value="ff">Friend or family</option>
+              <option value="press">Press</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="route-helper" id="route-helper"></div>
+
+          <div class="form-row">
+            <div>
+              <label class="field-label" for="fn">First Name <span class="req">*</span></label>
+              <input id="fn" name="firstName" type="text" required />
+            </div>
+            <div>
+              <label class="field-label" for="ln">Last Name <span class="req">*</span></label>
+              <input id="ln" name="lastName" type="text" required />
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="em">Email <span class="req">*</span></label>
+            <input id="em" name="email" type="email" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="situation">Briefly, what's on your mind?</label>
+            <textarea id="situation" name="message" placeholder="Address, opportunity, question — whatever you have on hand."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit Inquiry →</button>
+          <p class="form-privacy">All inquiries are confidential. Please do not include sensitive financial information.</p>
+        </form>
+      </div>
+
+      <div class="inquiry-card" id="thanks" style="display:none;">
+        <h3>Thank you.</h3>
+        <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.7;">Your inquiry has been received. Bryan will respond personally. For anything time-sensitive, reach out at <a href="mailto:hello@monumentequity.com" style="color: var(--green); border-bottom: 1px solid var(--green);">hello@monumentequity.com</a>.</p>
+      </div>
+
+      <!-- Right: Direct Contact -->
+      <div class="contact-side">
+        <h3>Or go direct.</h3>
+        <p>Two dedicated channels, one per audience.</p>
+        <div class="contact-direct">
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <a href="mailto:hello@monumentequity.com">hello@monumentequity.com</a>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <a href="mailto:deals@monumentequity.com">deals@monumentequity.com</a>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0H5C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM7.7 19H4.7V9h3v10zM6.2 7.7c-1 0-1.7-.7-1.7-1.6s.7-1.6 1.8-1.6c1 0 1.7.7 1.7 1.6s-.7 1.6-1.8 1.6zM20 19h-3v-5.4c0-1.5-.6-2-1.5-2-.9 0-1.8.7-1.8 2.1V19h-3V9h2.9v1.4c.3-.6 1.3-1.6 2.8-1.6 1.7 0 3.5 1 3.5 3.9V19z"/></svg>
+            <a href="https://linkedin.com/in/bryanjfrank" target="_blank" rel="noopener noreferrer">linkedin.com/in/bryanjfrank</a>
+          </div>
+        </div>
+        <div class="quick-links">
+          <div class="lbl">— Quick Links</div>
+          <a href="acquisitions.html"><span class="arr">→</span> Brokers: Atlanta buy box & deal submission</a>
+          <a href="owners.html"><span class="arr">→</span> Owners: thinking about selling</a>
+          <a href="notes.html"><span class="arr">→</span> Field Notes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Monument Equity Partners</div>
+        <div class="footer-tag">A private real estate company. Multifamily acquisitions in metro Atlanta, with longer-term work in development and 55+ residential.</div>
+      </div>
+      <div class="footer-links">
+        <a href="acquisitions.html">Acquisitions</a>
+        <a href="owners.html">Owners</a>
+        <a href="notes.html">Notes</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important.</strong> This website is provided for informational purposes only and does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation of any security, partnership interest, or investment. Monument Equity Partners LLC is a private company and does not solicit capital from the general public. Any references to investment strategy describe the principal's personal portfolio activity and concept-stage development work. Past performance, including the prior sale of Posto, is not indicative of future results. Forward-looking statements involve risks and uncertainties; actual results may differ materially. Monument Equity Partners LLC is not a registered investment adviser, broker-dealer, or licensed real estate brokerage.
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Monument Equity Partners LLC. All rights reserved.</div>
+      <div>New York, NY</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateRouteHelper(role) {
+    var el = document.getElementById('route-helper');
+    var map = {
+      broker: 'For Atlanta deals, our dedicated broker page is faster: <a href="acquisitions.html">Acquisitions →</a> includes the full buy box and a deal-submission form.',
+      owner: 'If you\'re considering selling, you may prefer our owner-friendly page: <a href="owners.html">For Owners →</a>.',
+      dev: 'Tell us a bit below — partnership conversations are private and personal. We\'ll respond directly.',
+      ff: 'Glad you\'re here. Skip the form if you\'d rather just email <a href="mailto:hello@monumentequity.com">hello@monumentequity.com</a>.',
+      press: 'For press inquiries, please include outlet and deadline below.',
+      other: ''
+    };
+    if (role && map[role]) {
+      el.innerHTML = map[role];
+      el.classList.add('show');
+    } else {
+      el.classList.remove('show');
+      el.innerHTML = '';
+    }
+  }
+</script>
+<script src="/assets/forms.js"></script>
+<script>wireForm('inquiry-form', 'inquiry-form-card', 'thanks');</script>
+
+</body>
+</html>

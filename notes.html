@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Field Notes — Monument Equity Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --paper-warm: #F5F4EE;
+    --paper-card: #FAF9F4;
+    --ink: #0F0F0F;
+    --ink-soft: #5A5A55;
+    --green: #1F3B2E;
+    --green-deep: #142719;
+    --orange: #D87333;
+    --rule: #DCD9D0;
+    --rule-dark: rgba(255,255,255,0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+  }
+  a { color: var(--ink); text-decoration: none; transition: color 0.18s; }
+  a:hover { color: var(--orange); }
+
+  header {
+    position: sticky; top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 10;
+  }
+  .nav { max-width: 880px; margin: 0 auto; padding: 18px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .brand { font-family: 'DM Serif Display', serif; font-size: 22px; }
+  .brand a { color: var(--ink); }
+  .nav-links { display: flex; gap: 30px; align-items: center; font-size: 14px; }
+  .nav-links a { color: var(--ink-soft); }
+  .nav-links a.active { color: var(--green); border-bottom: 1px solid var(--orange); padding-bottom: 4px; }
+
+  .hero { max-width: 760px; margin: 0 auto; padding: 80px 32px 40px; }
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(40px, 5.4vw, 60px); margin-bottom: 14px; }
+  .accent-line { width: 56px; height: 2px; background: var(--orange); margin: 14px 0 22px; }
+  .hero-lede { font-size: 17px; color: var(--ink-soft); }
+
+  .notes-list { max-width: 760px; margin: 0 auto; padding: 20px 32px 80px; }
+  .note {
+    border-top: 1px solid var(--rule);
+    padding: 48px 0;
+  }
+  .note:last-child { border-bottom: 1px solid var(--rule); }
+  .note-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .note h2 {
+    font-size: clamp(28px, 3.4vw, 38px);
+    margin-bottom: 22px;
+  }
+  .note p {
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+  .note p.dim { color: var(--ink-soft); }
+  .note .signoff {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--green);
+    margin-top: 26px;
+  }
+
+  /* Empty state */
+  .empty {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 32px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 15px;
+    border-top: 1px solid var(--rule);
+  }
+
+  footer { background: var(--green-deep); color: rgba(255,255,255,0.6); padding: 50px 32px 28px; }
+  .footer-inner { max-width: 880px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--rule-dark); margin-bottom: 22px; }
+  .footer-brand { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--paper); margin-bottom: 8px; }
+  .footer-tag { font-size: 13px; line-height: 1.6; max-width: 460px; }
+  .footer-links { text-align: right; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; }
+  .footer-links a { color: rgba(255,255,255,0.7); display: block; padding: 4px 0; }
+  .footer-links a:hover { color: var(--orange); }
+  .disclaimer { font-size: 11px; line-height: 1.7; color: rgba(255,255,255,0.45); max-width: 880px; margin-bottom: 18px; }
+  .disclaimer strong { color: rgba(255,255,255,0.72); font-weight: 500; }
+  .footer-bottom { display: flex; justify-content: space-between; font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); padding-top: 16px; border-top: 1px solid var(--rule-dark); }
+
+  @media (max-width: 880px) {
+    .nav-links a:not(.active) { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-links { text-align: left; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+    .hero { padding: 60px 24px 24px; }
+    .notes-list { padding: 12px 24px 60px; }
+    .note { padding: 36px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><a href="index.html">Monument Equity Partners</a></div>
+    <nav class="nav-links">
+      <a href="acquisitions.html">Acquisitions</a>
+      <a href="owners.html">Owners</a>
+      <a href="notes.html" class="active">Notes</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">— Field Notes</div>
+  <h1>Working notes on real estate, operating, and the long view.</h1>
+  <div class="accent-line"></div>
+  <p class="hero-lede">Short pieces — a few times a year — on what we're seeing in the market, how we're thinking about deals, and what the operator-first lens actually looks like in practice.</p>
+</section>
+
+<div class="notes-list">
+
+  <article class="note" id="why-atlanta">
+    <div class="note-meta">— March 2026 · Markets</div>
+    <h2>Why Atlanta.</h2>
+    <p>When I started Monument Equity, the obvious primary metro was Raleigh-Durham. The Triangle has the demographic story, the universities, the growth, and I knew the market personally. So I spent six months running the buy-box numbers and walked dozens of properties on the ground.</p>
+    <p>The math told me to look elsewhere.</p>
+    <p>The Triangle is too thin in the unit-count range I want — small-to-mid multifamily, B-/C+, 8–24 doors per building. The inventory at scale isn't there, and what's there has bid up faster than the rent gap can support. Atlanta has the depth Raleigh doesn't, with the same demographic tailwind underneath.</p>
+    <p>Three submarkets I'm focused on: College Park (30337), East Point (30344), and Hapeville (30354) — what I'd call "send me everything." Selectively, I'll also look at West End and Adair Park (30310, 30311) and South Atlanta and Lakewood (30315), with a careful eye on displacement dynamics. Grant Park, Vine City, and Edgewood/Kirkwood (30312, 30314, 30317) are case-by-case — I'll look but won't lead.</p>
+    <p>The other thing Atlanta has that the Triangle doesn't is volume of off-market opportunity. Tired-landlord ownership runs deep here. A patient buyer with a clear box and a fast LOI gets in front of inventory that never reaches MLS.</p>
+    <p>Goal for 2026–2027: 2–3 closings, $1.5–3M of capital deployed. I'll be on the ground 10–15 multi-day trips a year. Kickoff trip is May 18–21.</p>
+    <p class="dim">If you work in metro Atlanta and any of the above is across your desk: I'd like to hear from you.</p>
+    <div class="signoff">— Bryan</div>
+  </article>
+
+  <article class="note" id="operators-question">
+    <div class="note-meta">— April 2026 · Underwriting</div>
+    <h2>The operator's first question.</h2>
+    <p>When I sold Posto Property Management at the end of 2024, what I took with me wasn't the financial outcome — it was a decade of running buildings.</p>
+    <p>The single most useful thing operating taught me is that the questions an underwriter asks and the questions an operator asks are different. An underwriter asks: what's the in-place NOI, what's the rent gap, what's the exit cap? An operator asks: who's actually here on day 60, what does the boiler sound like in February, does the on-site team know the difference between a vacancy and a turnover?</p>
+    <p>Most institutional capital — even good capital — asks the underwriter questions first. Monument Equity is set up to ask the operator questions first. Conservative leverage. Long hold horizon. Hands-on management. Decisions made by one principal.</p>
+    <p>This shows up most clearly in what I'm willing to buy. Not heavy turnarounds. Not structural deficits. Not properties that require a full property-management rebuild from day one. Light-to-moderate value-add, a clean rent-gap thesis, occupancy at 75% or above, vintage I can underwrite confidently. The deal has to pencil for an owner who plans to be there in year ten — not for an underwriter optimizing for a year-five exit.</p>
+    <p>It's a slower way to deploy capital. It's also the only way I know how to do it.</p>
+    <div class="signoff">— Bryan</div>
+  </article>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Monument Equity Partners</div>
+        <div class="footer-tag">A private real estate company. Multifamily acquisitions in metro Atlanta, with longer-term work in development and 55+ residential.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="acquisitions.html">Acquisitions</a>
+        <a href="owners.html">Owners</a>
+        <a href="notes.html">Notes</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Important.</strong> Field Notes are informal observations and do not constitute investment advice, an offer to sell, or a solicitation of an offer to buy any security or interest in any investment. Monument Equity Partners LLC is a private company and does not solicit capital from the general public. Forward-looking statements involve risks; actual results may differ.
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Monument Equity Partners LLC. All rights reserved.</div>
+      <div>New York, NY</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

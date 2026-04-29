@@ -1,0 +1,38 @@
+# Whitelist approach: ignore everything in this project folder by default,
+# then explicitly include only the files needed to deploy the public website.
+# This keeps internal business documents (decks, memos, trackers, etc.) out
+# of the public GitHub repo automatically.
+
+# Ignore everything in root and all subfolders
+/*
+/.*
+
+# Re-include the website files we DO want tracked
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/index.html
+!/acquisitions.html
+!/owners.html
+!/notes.html
+!/login.html
+!/package.json
+!/package-lock.json
+!/vercel.json
+
+# Re-include website folders (and everything inside them)
+!/api/
+!/api/**
+!/assets/
+!/assets/**
+!/_fonts/
+!/_fonts/**
+
+# But still exclude common junk inside those folders
+**/.DS_Store
+**/node_modules/
+**/.env
+**/.env.local
+**/*.tmp
+**/.~lock.*
+**/~$*
