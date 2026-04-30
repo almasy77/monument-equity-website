@@ -95,18 +95,22 @@
     background: var(--paper-warm);
     border: 1px solid var(--rule);
     position: relative;
-    display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
   .profile::after {
     content: 'BF';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
     font-family: 'DM Serif Display', serif;
     font-size: 56px; color: var(--green); opacity: 0.32;
+    z-index: 0;
+    pointer-events: none;
   }
   .profile img {
     width: 100%; height: 100%;
     object-fit: cover; object-position: center 22%;
     position: absolute; top: 0; left: 0;
+    z-index: 1;
   }
   .principal-name { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--ink); margin-bottom: 4px; }
   .principal-title {
@@ -422,7 +426,7 @@
       <div class="principal-body">
         <div class="principal-name">Bryan Frank</div>
         <div class="principal-title">Principal</div>
-        <p>Bryan founded Monument Equity in 2026 after exiting Posto, a property management company he built and sold in the Northeast.</p>
+        <p>Bryan previously built and sold Posto, a property management company in the Northeast.</p>
         <p>Monument Equity is an owner-operator, with a long-term view of building value.</p>
         <p>Additional relevant experience: Trust Guild, a private family office specializing in care-coordination for aging family members.</p>
         <div class="lantern-aside">
