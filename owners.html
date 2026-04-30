@@ -74,7 +74,8 @@
   .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
   .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { top: 19px; transform: rotate(-45deg); }
 
-  .hero { max-width: 760px; margin: 0 auto; padding: 80px 32px 32px; }
+  .hero { max-width: 1200px; margin: 0 auto; padding: 80px 32px 32px; }
+  .hero h1 { max-width: 760px; }
   .eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 11px; letter-spacing: 0.24em;
@@ -86,8 +87,9 @@
   .hero-lede { font-size: 18px; color: var(--ink-soft); }
 
   /* Letter */
-  .letter-wrap { max-width: 760px; margin: 0 auto; padding: 36px 32px 60px; }
+  .letter-wrap { max-width: 1200px; margin: 0 auto; padding: 36px 32px 60px; }
   .letter-grid {
+    max-width: 720px;
     display: grid;
     grid-template-columns: 110px 1fr;
     gap: 28px;
@@ -127,6 +129,7 @@
   }
   .from-title { color: var(--ink-soft); font-size: 14px; }
 
+  .letter-body { max-width: 720px; }
   .letter-body p { font-size: 17px; color: var(--ink); margin-bottom: 18px; line-height: 1.75; }
   .letter-body p.softer { color: var(--ink-soft); }
 
@@ -149,7 +152,7 @@
 
   /* What we buy / don't buy */
   .what-bg { background: var(--paper-warm); }
-  .what-wrap { max-width: 1100px; margin: 0 auto; padding: 60px 32px; }
+  .what-wrap { max-width: 1200px; margin: 0 auto; padding: 60px 32px; }
   .what-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
   .what-header h2 { font-size: clamp(26px, 3vw, 34px); }
   .what-grid {
@@ -177,7 +180,7 @@
   .what-card li:last-child { border-bottom: none; }
 
   /* How we close */
-  .close-wrap { max-width: 1100px; margin: 0 auto; padding: 60px 32px; }
+  .close-wrap { max-width: 1200px; margin: 0 auto; padding: 60px 32px; }
   .close-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
