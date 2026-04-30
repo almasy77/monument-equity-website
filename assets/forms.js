@@ -1,7 +1,30 @@
-// Monument Equity — form submission helper.
+// Monument Equity — form submission helper + mobile nav toggle.
 // Wires a form to /api/submit, swaps in a thank-you panel on success.
 
 (function () {
+  // Mobile nav toggle — runs on every page that loads this script
+  function initNavToggle() {
+    var btn = document.querySelector('.nav-toggle');
+    var links = document.querySelector('.nav-links');
+    if (!btn || !links) return;
+    btn.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Close menu when any nav link is clicked
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavToggle);
+  } else {
+    initNavToggle();
+  }
+
   function wireForm(formId, hideId, thanksId) {
     var form = document.getElementById(formId);
     var hide = document.getElementById(hideId);

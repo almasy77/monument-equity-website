@@ -65,6 +65,14 @@
   .nav-links { display: flex; gap: 30px; align-items: center; font-size: 14px; }
   .nav-links a { color: var(--ink-soft); }
   .nav-links a.active { color: var(--green); border-bottom: 1px solid var(--orange); padding-bottom: 4px; }
+  .nav-toggle { display: none; background: none; border: 0; padding: 0; cursor: pointer; width: 40px; height: 40px; position: relative; }
+  .nav-toggle .bar { display: block; width: 22px; height: 2px; background: var(--ink); position: absolute; left: 9px; transition: transform 0.2s, opacity 0.15s, top 0.2s; }
+  .nav-toggle .bar:nth-child(1) { top: 13px; }
+  .nav-toggle .bar:nth-child(2) { top: 19px; }
+  .nav-toggle .bar:nth-child(3) { top: 25px; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { top: 19px; transform: rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { top: 19px; transform: rotate(-45deg); }
 
   .hero { max-width: 760px; margin: 0 auto; padding: 80px 32px 40px; }
   .eyebrow {
@@ -135,7 +143,12 @@
   .footer-bottom { display: flex; justify-content: space-between; font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); padding-top: 16px; border-top: 1px solid var(--rule-dark); }
 
   @media (max-width: 880px) {
-    .nav-links a:not(.active) { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 8px 0; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 14px 32px; border-bottom: 1px solid var(--rule); font-size: 16px; color: var(--ink-soft); }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-links a.active { color: var(--green); border-bottom: 1px solid var(--rule); padding-bottom: 14px; }
     .footer-top { grid-template-columns: 1fr; }
     .footer-links { text-align: left; }
     .footer-bottom { flex-direction: column; gap: 8px; }
@@ -150,6 +163,7 @@
 <header>
   <div class="nav">
     <div class="brand"><a href="index.html"><svg class="brand-mark" viewBox="5 7 22 25" aria-hidden="true"><polygon points="5.76,32 5.76,24.96 9.6,23.68 11.52,16 14.72,14.72 16.64,9.6 19.84,8.32 22.4,10.24 24.96,16 26.88,21.12 26.88,32" fill="currentColor"/></svg><span>Monument Equity Partners</span></a></div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
     <nav class="nav-links">
       <a href="index.html#about-bryan">About</a>
       <a href="acquisitions.html">Acquisitions</a>
